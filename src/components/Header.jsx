@@ -24,7 +24,7 @@ export default function Header({ content, lang, toggleLanguage }) {
             <Link to="/" className={`text-sm font-bold text-primary ${isRTL ? 'text-base' : ''}`}>{content.home}</Link>
             <Link to="/about" className={`text-sm font-semibold text-gray-500 hover:text-primary transition-colors ${isRTL ? 'text-base' : ''}`}>{content.about}</Link>
             <Link to="/categories" className={`text-sm font-semibold text-gray-500 hover:text-primary transition-colors ${isRTL ? 'text-base' : ''}`}>{content.products}</Link>
-            <a className={`text-sm font-semibold text-gray-500 hover:text-primary transition-colors ${isRTL ? 'text-base' : ''}`} href="#">{content.quality}</a>
+
             <Link to="/exhibitions" className={`text-sm font-semibold text-gray-500 hover:text-primary transition-colors ${isRTL ? 'text-base' : ''}`}>{content.exhibitions}</Link>
             <Link to="/news" className={`text-sm font-semibold text-gray-500 hover:text-primary transition-colors ${isRTL ? 'text-base' : ''}`}>{content.news}</Link>
           </nav>
