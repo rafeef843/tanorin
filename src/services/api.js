@@ -114,4 +114,30 @@ export const fetchSiteContent = async () => {
     }
 };
 
+export const fetchJobs = async () => {
+    try {
+        const response = await api.get('/jobs/');
+        return response.data;
+    } catch (error) {
+        console.error("Error fetching jobs:", error);
+        return [];
+    }
+};
+
+export const submitApplication = async (formData) => {
+    try {
+        // Need to set content type to multipart/form-data for file upload if needed,
+        // but axios usually handles it if we pass FormData object.
+        const response = await api.post('/applications/', formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error("Error submitting application:", error);
+        throw error;
+    }
+};
+
 export default api;

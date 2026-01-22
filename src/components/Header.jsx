@@ -27,6 +27,7 @@ export default function Header({ content, lang, toggleLanguage }) {
 
             <Link to="/exhibitions" className={`text-sm font-semibold text-gray-500 hover:text-primary transition-colors ${isRTL ? 'text-base' : ''}`}>{content.exhibitions}</Link>
             <Link to="/news" className={`text-sm font-semibold text-gray-500 hover:text-primary transition-colors ${isRTL ? 'text-base' : ''}`}>{content.news}</Link>
+            <Link to="/careers" className={`text-sm font-semibold text-gray-500 hover:text-primary transition-colors ${isRTL ? 'text-base' : ''}`}>{content.careers}</Link>
           </nav>
         </div>
         <div className="flex items-center gap-4">

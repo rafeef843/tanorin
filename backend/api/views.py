@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import Category, Product, NewsArticle, Exhibition, SiteContent
-from .serializers import CategorySerializer, ProductSerializer, NewsArticleSerializer, ExhibitionSerializer, SiteContentSerializer
+from .models import Category, Product, NewsArticle, Exhibition, SiteContent, JobOpening, JobApplication
+from .serializers import CategorySerializer, ProductSerializer, NewsArticleSerializer, ExhibitionSerializer, SiteContentSerializer, JobOpeningSerializer, JobApplicationSerializer
 
 class SiteContentViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = SiteContent.objects.all()
@@ -60,3 +60,12 @@ class ProductViewSet(viewsets.ReadOnlyModelViewSet):
             queryset = queryset.filter(is_featured=True)
             
         return queryset
+
+class JobOpeningViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = JobOpening.objects.filter(is_active=True).order_by('-created_at')
+    serializer_class = JobOpeningSerializer
+
+class JobApplicationViewSet(viewsets.ModelViewSet):
+    queryset = JobApplication.objects.all()
+    serializer_class = JobApplicationSerializer
+    http_method_names = ['post']

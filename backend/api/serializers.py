@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Category, Product, ProductImage, NewsArticle, Exhibition, SiteContent
+from .models import Category, Product, ProductImage, NewsArticle, Exhibition, SiteContent, JobOpening, JobApplication
 
 class ExhibitionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -32,4 +32,14 @@ class ProductSerializer(serializers.ModelSerializer):
     
     class Meta:
         model = Product
+        fields = '__all__'
+
+class JobOpeningSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JobOpening
+        fields = '__all__'
+
+class JobApplicationSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = JobApplication
         fields = '__all__'

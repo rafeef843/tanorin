@@ -26,6 +26,7 @@ import NewsPage from './NewsPage';
 import NewsDetailPage from './NewsDetailPage';
 import ErrorPage from './components/ErrorPage';
 import ExhibitionsPage from './ExhibitionsPage';
+import CareersPage from './CareersPage';
 import { fetchSiteContent } from './services/api';
 
 function ScrollToTop() {
@@ -154,6 +155,7 @@ function MainLayout({ lang, toggleLanguage }) {
           } />
           <Route path="/news" element={<NewsPage content={content.newsPage} lang={lang} />} />
           <Route path="/news/:slug" element={<NewsDetailPage lang={lang} />} />
+          <Route path="/careers" element={<CareersPage lang={lang} />} />
           <Route path="/exhibitions" element={
             <ExhibitionsPage lang={lang} />
           } />

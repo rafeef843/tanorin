@@ -35,3 +35,12 @@ body {
 [dir="rtl"] textarea {
     text-align: right;
 }
+
+.glass-nav {
+    background: rgba(250, 247, 245, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+.dark .glass-nav {
+    background: rgba(25, 31, 36, 0.8);
+}

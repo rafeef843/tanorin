@@ -116,13 +116,6 @@ class Exhibition(models.Model):
     
     image = models.ImageField(upload_to='exhibitions/')
     
-    # Store map coordinates for the frontend map?
-    # Simple x/y percentage on the map based on the design or lat/long?
-    # The design uses "top: 50%, right: 38%" css positioning.
-    # Let's add simple fields for map_top_percent and map_right_percent if needed, 
-    # but for now, the user didn't explicitly ask for dynamic map dots, just the table/list. 
-    # I will skip map coordinates to keep it simple unless needed.
-    
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
@@ -138,7 +131,6 @@ class SiteContent(models.Model):
     text_ar = models.TextField(blank=True, null=True)
     image = models.ImageField(upload_to='site_content/', blank=True, null=True)
     
-    # Optional: Grouping for dashboard organization
     section = models.CharField(max_length=100, blank=True, help_text="e.g. 'Header', 'Footer', 'Home Hero'")
 
     def __str__(self):
@@ -146,3 +138,38 @@ class SiteContent(models.Model):
 
     class Meta:
         verbose_name_plural = "Site Content"
+
+class JobOpening(models.Model):
+    TYPE_CHOICES = [
+        ('Full-time', 'Full-time'),
+        ('Part-time', 'Part-time'),
+        ('Contract', 'Contract'),
+    ]
+
+    title_en = models.CharField(max_length=200)
+    title_ar = models.CharField(max_length=200)
+    
+    location_en = models.CharField(max_length=200, help_text="e.g. Dubai, UAE")
+    location_ar = models.CharField(max_length=200)
+    
+    type = models.CharField(max_length=50, choices=TYPE_CHOICES, default='Full-time')
+    
+    description_short_en = models.TextField(help_text="Short description for list view")
+    description_short_ar = models.TextField()
+    
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.title_en
+
+class JobApplication(models.Model):
+    full_name = models.CharField(max_length=200)
+    email = models.EmailField()
+    cv = models.FileField(upload_to='cvs/')
+    created_at = models.DateTimeField(auto_now_add=True)
+    
+    job = models.ForeignKey(JobOpening, on_delete=models.SET_NULL, null=True, blank=True, related_name='applications')
+
+    def __str__(self):
+        return f"{self.full_name} - {self.email}"

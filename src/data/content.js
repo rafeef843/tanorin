@@ -6,6 +6,7 @@ export const content = {
       quality: "Quality",
       exhibitions: "Exhibitions",
       news: "News",
+      careers: "Careers",
       about: "About",
       langSwitch: "AR"
     },
@@ -235,6 +236,7 @@ export const content = {
       quality: "الجودة",
       exhibitions: "المعارض",
       news: "الأخبار",
+      careers: "وظائف",
       about: "عن تانورين",
       langSwitch: "EN"
     },
