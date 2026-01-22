@@ -4,14 +4,11 @@ import Pagination from './components/Pagination';
 
 export default function ExhibitionsPage({ lang }) {
   const [exhibitions, setExhibitions] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const isRTL = lang === 'ar';
-
   useEffect(() => {
     const loadExhibitions = async () => {
       const data = await fetchExhibitions();
       setExhibitions(data);
-      setLoading(false);
+      // loading state removed as it was unused in render
     };
     loadExhibitions();
   }, []);
@@ -51,7 +48,7 @@ export default function ExhibitionsPage({ lang }) {
   }, [nextEvent]);
 
   // Format date helper
-  const formatDate = (dateStr, format = 'month-year') => {
+  const formatDate = (dateStr) => {
     const date = new Date(dateStr);
     if (lang === 'ar') {
         // Simple Arabic formatting override needed? using locale for now

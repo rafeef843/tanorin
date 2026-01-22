@@ -5,7 +5,6 @@ import { Link } from 'react-router-dom';
 
 export default function NewsPage({ content, lang }) {
   const [newsItems, setNewsItems] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [activeFilter, setActiveFilter] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [currentPage, setCurrentPage] = useState(1);
@@ -86,16 +85,17 @@ export default function NewsPage({ content, lang }) {
 
   useEffect(() => {
     async function load() {
-      setLoading(true);
+      // setLoading(true); // Removed unused
       const data = await fetchNews();
       if (data && data.length > 0) {
         setNewsItems(data);
       } else {
         setNewsItems(fallbackItems);
       }
-      setLoading(false);
+      // setLoading(false);
     }
     load();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Filter Items

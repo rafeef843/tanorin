@@ -4,7 +4,7 @@ import { fetchProduct, fetchProducts } from './services/api';
 
 export default function ProductDetailsPage({ content, lang }) {
   const isRTL = lang === 'ar';
-  const { categorySlug, productSlug } = useParams();
+  const { productSlug } = useParams();
   const [product, setProduct] = useState(null);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [activeImage, setActiveImage] = useState(0);
@@ -23,6 +23,7 @@ export default function ProductDetailsPage({ content, lang }) {
     if (productSlug) {
         loadProductAndRelated();
         // Reset active image
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setActiveImage(0);
     }
   }, [productSlug]);
@@ -173,7 +174,7 @@ export default function ProductDetailsPage({ content, lang }) {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {relatedProducts.length > 0 ? relatedProducts.map((item, index) => {
+            {relatedProducts.length > 0 ? relatedProducts.map((item) => {
                const itemTag = isRTL ? item.tag_ar : item.tag_en;
                const itemName = isRTL ? item.name_ar : item.name_en;
                

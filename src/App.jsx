@@ -51,7 +51,7 @@ function MainLayout({ lang, toggleLanguage }) {
       const loadContent = async () => {
           const dbItems = await fetchSiteContent();
           if (dbItems && dbItems.length > 0) {
-              setMergedContent(prev => {
+              setMergedContent(() => {
                   // Deep clone prev to avoid mutating original
                   const newContent = JSON.parse(JSON.stringify(content[lang])); // Reset to base then apply? Or apply to current?
                   // Better: Apply DB on top of base content[lang] always.

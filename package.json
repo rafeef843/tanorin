@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
+    "test": "vitest",
     "dev:all": "concurrently \"npm run dev\" \"./venv/bin/python3 manage.py runserver\"",
     "build": "vite build",
     "lint": "eslint .",
@@ -19,6 +20,9 @@
   "devDependencies": {
     "@eslint/js": "^9.39.1",
     "@tailwindcss/postcss": "^4.1.18",
+    "@testing-library/dom": "^10.4.1",
+    "@testing-library/jest-dom": "^6.9.1",
+    "@testing-library/react": "^16.3.2",
     "@types/react": "^19.2.5",
     "@types/react-dom": "^19.2.3",
     "@vitejs/plugin-react": "^5.1.1",
@@ -29,8 +33,10 @@
     "eslint-plugin-react-refresh": "^0.4.24",
     "fs": "^0.0.1-security",
     "globals": "^16.5.0",
+    "jsdom": "^27.4.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.18",
-    "vite": "^7.2.4"
+    "vite": "^7.2.4",
+    "vitest": "^4.0.17"
   }
 }
