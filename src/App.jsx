@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import AboutPage from './AboutPage';
 import { content } from './data/content';
 import { aboutPageContent } from './data/aboutContent';
+import GlobalErrorBoundary from './components/GlobalErrorBoundary';
 
 import CategoriesPage from './CategoriesPage';
 import { categoriesPageContent } from './data/categoriesPageContent';
@@ -128,6 +129,7 @@ function MainLayout({ lang, toggleLanguage }) {
       <ScrollToTop />
       <Header content={t.header} lang={lang} toggleLanguage={toggleLanguage} />
       <main>
+        <GlobalErrorBoundary>
         <Routes>
           <Route path="/" element={
             <>
@@ -161,6 +163,7 @@ function MainLayout({ lang, toggleLanguage }) {
           } />
           <Route path="*" element={<ErrorPage lang={lang} />} />
         </Routes>
+        </GlobalErrorBoundary>
       </main>
       <Footer content={t.footer} lang={lang} />
       {/* Mobile Nav kept simple in layout */}
