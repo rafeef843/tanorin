@@ -3,6 +3,7 @@ import { fetchExhibitions } from './services/api';
 import Pagination from './components/Pagination';
 
 export default function ExhibitionsPage({ lang }) {
+  const isRTL = lang === 'ar';
   const [exhibitions, setExhibitions] = useState([]);
   useEffect(() => {
     const loadExhibitions = async () => {
