@@ -269,30 +269,32 @@ export default function NewsPage({ content, lang }) {
             </a>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="group cursor-pointer">
-                <div className="relative rounded-[2rem] overflow-hidden mb-5 shadow-lg">
-                <img alt="Video Thumbnail" className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAjzXXFFFR4CA66RwH4pzKKfI_rO9pw0p_DeFkqCe-qNLaSJaiJwlWIKRHi2qG84jAd7LwNmndfL-iz7JYcDoOBYc3uLXn-zaV4EZYgxiPd3f-4QZ7oohXWh-hVjM1Sf5grI3M3mFnOsENxRnNHGDxAVlzTiXw-kx3XuAXgLTTRqv73i8fuJeTXiB6iLtzjqMHEwqPlqXGqHTjik2vg0DIqcxSmiG-e4qJm-3XgJmMObrY2WwThcBpl8Io8Bjq-2GV6FAN_IaZVEkU"/>
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors flex items-center justify-center">
-                    <div className="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/40 group-hover:scale-110 transition-transform shadow-xl">
-                    <span className="material-symbols-outlined text-white text-5xl fill-1 ml-1">play_arrow</span>
+            {newsItems.filter(item => item.video_url).length > 0 ? (
+                newsItems.filter(item => item.video_url).slice(0, 2).map(item => (
+                    <div key={item.id} className="group cursor-pointer">
+                        <div className="relative rounded-[2rem] overflow-hidden mb-5 shadow-lg">
+                        <img 
+                            alt={lang === 'en' ? item.title_en : item.title_ar} 
+                            className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-105" 
+                            src={item.image}
+                        />
+                        <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors flex items-center justify-center">
+                            <a href={item.video_url} target="_blank" rel="noopener noreferrer" className="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/40 group-hover:scale-110 transition-transform shadow-xl">
+                            <span className="material-symbols-outlined text-white text-5xl fill-1 ml-1">play_arrow</span>
+                            </a>
+                        </div>
+                        </div>
+                        <h4 className="text-xl font-bold group-hover:text-primary transition-colors mb-1">
+                            {lang === 'en' ? item.title_en : item.title_ar}
+                        </h4>
+                        <span className="text-gray-500 text-sm font-medium">
+                            {item.video_duration || (lang === 'en' ? 'Watch Video' : 'شاهد الفيديو')}
+                        </span>
                     </div>
-                </div>
-                </div>
-                <h4 className="text-xl font-bold group-hover:text-primary transition-colors mb-1">CEO Interview: The Future of Organic Trading</h4>
-                <span className="text-gray-500 text-sm font-medium">Bloomberg TV • 12:45 min</span>
-            </div>
-            <div className="group cursor-pointer">
-                <div className="relative rounded-[2rem] overflow-hidden mb-5 shadow-lg">
-                <img alt="Video Thumbnail" className="w-full aspect-video object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBAvSyQQX5x4-J06RAf4IdLO0qd2MghOQPnC-xOv0lsEGyqaOFwTibG_qrPIGlnGsPK6hSWAPi9a98C-Bb8LPvo2B276ahNxAl2imJu3OIWSipmSZelSmv1FsndWvzHVxjgm4A7qI3lVdTCvWDmvL0X52dplbR3Rzo_clTaGV8d6fJaf7hTVcikson_wbIewIY84e20ojkP-qJ_BMKoHMosaa7MQGqxl2EifETaejMraaN4hejan6QHpCzyeVd4nabOIO3RBtBkMlI"/>
-                <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors flex items-center justify-center">
-                    <div className="w-20 h-20 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center border border-white/40 group-hover:scale-110 transition-transform shadow-xl">
-                    <span className="material-symbols-outlined text-white text-5xl fill-1 ml-1">play_arrow</span>
-                    </div>
-                </div>
-                </div>
-                <h4 className="text-xl font-bold group-hover:text-primary transition-colors mb-1">Documentary: From Farm to Table Journey</h4>
-                <span className="text-gray-500 text-sm font-medium">Tanorin Originals • 08:30 min</span>
-            </div>
+                ))
+            ) : (
+                <p className="text-gray-500 col-span-2 text-center">{lang === 'en' ? "No media highlights available." : "لا توجد وسائط مميزة متاحة."}</p>
+            )}
             </div>
         </div>
       </section>
