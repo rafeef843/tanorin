@@ -155,7 +155,7 @@ function MainLayout({ lang, toggleLanguage }) {
           <Route path="/categories/:categorySlug/:productSlug" element={
             <ProductDetailsPage content={tProductDetails} lang={lang} />
           } />
-          <Route path="/news" element={<NewsPage content={content.newsPage} lang={lang} />} />
+          <Route path="/news" element={<NewsPage content={t.newsPage} lang={lang} />} />
           <Route path="/news/:slug" element={<NewsDetailPage lang={lang} />} />
           <Route path="/careers" element={<CareersPage lang={lang} />} />
           <Route path="/exhibitions" element={
