@@ -1,8 +1,33 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { fetchNews } from '../services/api';
 
 export default function NewsMedia({ content, lang }) {
   const isRTL = lang === 'ar';
+  const [dynamicNews, setDynamicNews] = useState([]);
+  
+  useEffect(() => {
+    const loadNews = async () => {
+      const news = await fetchNews();
+      if (news && news.length > 0) {
+        // Take latest 3 items
+        setDynamicNews(news.slice(0, 3));
+      }
+    };
+    loadNews();
+  }, []);
+
+  // Use dynamic news if available, otherwise fallback to static content items
+  const displayItems = dynamicNews.length > 0 
+    ? dynamicNews.map(item => ({
+        // Map API fields to UI fields
+        title: lang === 'en' ? item.title_en : item.title_ar,
+        date: item.date_published,
+        desc: lang === 'en' ? item.excerpt_en : item.excerpt_ar,
+        image: item.image,
+        slug: item.slug
+      }))
+    : content.items;
 
   return (
     <section className="py-24 bg-white dark:bg-background-dark">
@@ -18,7 +43,7 @@ export default function NewsMedia({ content, lang }) {
           </Link>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-          {content.items.map((item, index) => (
+          {displayItems.map((item, index) => (
             <div key={index} className="group cursor-pointer">
               <div className="relative aspect-[4/3] rounded-3xl overflow-hidden mb-6 shadow-lg shadow-gray-200 dark:shadow-none transition-transform duration-500 group-hover:scale-[1.02]">
                 <img alt={item.title} className="w-full h-full object-cover" src={item.image} />
@@ -28,7 +53,7 @@ export default function NewsMedia({ content, lang }) {
                 <span className="text-sm font-bold text-secondary-green mb-2 block">{item.date}</span>
                 <h3 className="text-2xl font-extrabold mb-4 leading-tight group-hover:text-primary transition-colors">{item.title}</h3>
                 <p className="text-gray-500 mb-6 line-clamp-2">{item.desc}</p>
-                <Link className="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider group/link" to="/news">
+                <Link className="inline-flex items-center gap-2 text-primary font-bold text-sm uppercase tracking-wider group/link" to={`/news/${item.slug || 'static'}`}>
                   {content.readMore}
                   <span className={`material-symbols-outlined text-base group-hover/link:${isRTL ? '-translate-x-1' : 'translate-x-1'} transition-transform ${isRTL ? 'rtl-flip' : ''}`}>chevron_right</span>
                 </Link>
