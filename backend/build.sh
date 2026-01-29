@@ -2,13 +2,13 @@
 # exit on error
 set -o errexit
 
-pip install --upgrade pip
-pip install --no-cache-dir -r requirements.txt
+python3 -m pip install --upgrade pip
+python3 -m pip install --no-cache-dir -r requirements.txt
 
 # Verify gunicorn is installed
 which gunicorn || echo "Gunicorn not found in PATH"
-gunicorn --version || echo "Gunicorn command failed"
+python3 -m gunicorn --version || echo "Gunicorn module check failed"
 
-python manage.py collectstatic --no-input
-python manage.py makemigrations
-python manage.py migrate
+python3 manage.py collectstatic --no-input
+python3 manage.py makemigrations
+python3 manage.py migrate
