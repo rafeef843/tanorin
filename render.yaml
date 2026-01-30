@@ -3,7 +3,7 @@ services:
     name: tanorin-backend
     env: python
     rootDir: backend
-    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --no-input && python manage.py migrate"
+    buildCommand: "pip install -r requirements.txt && python3 manage.py collectstatic --no-input && python3 manage.py migrate"
     startCommand: "gunicorn tanorin_backend.wsgi:application"
     envVars:
       - key: PYTHON_VERSION
