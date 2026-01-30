@@ -3,8 +3,8 @@ services:
     name: tanorin-backend
     env: python
     rootDir: backend
-    buildCommand: "./build.sh"
-    startCommand: "python3 -m gunicorn --bind 0.0.0.0:$PORT tanorin_backend.wsgi:application"
+    buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --no-input && python manage.py migrate"
+    startCommand: "gunicorn tanorin_backend.wsgi:application"
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.9
