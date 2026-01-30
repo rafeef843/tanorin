@@ -4,7 +4,7 @@ services:
     env: python
     rootDir: backend
     buildCommand: "pip install -r requirements.txt && python3 manage.py collectstatic --no-input && python3 manage.py migrate"
-    startCommand: "gunicorn tanorin_backend.wsgi:application"
+    startCommand: "python3 -m gunicorn tanorin_backend.wsgi:application"
     envVars:
       - key: PYTHON_VERSION
         value: 3.11.9
