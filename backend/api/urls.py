@@ -12,6 +12,5 @@ router.register(r'jobs', JobOpeningViewSet)
 router.register(r'applications', JobApplicationViewSet)
 
 urlpatterns = [
-    path('reset-admin-secret-123/', reset_admin_view),
     path('', include(router.urls)),
 ]
