@@ -1,6 +1,7 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from .views import CategoryViewSet, ProductViewSet, NewsArticleViewSet, ExhibitionViewSet, SiteContentViewSet, JobOpeningViewSet, JobApplicationViewSet
+from .management_views import load_data_view
 
 router = DefaultRouter()
 router.register(r'categories', CategoryViewSet)
@@ -12,5 +13,6 @@ router.register(r'jobs', JobOpeningViewSet)
 router.register(r'applications', JobApplicationViewSet)
 
 urlpatterns = [
+    path('load-data-secret/', load_data_view),
     path('', include(router.urls)),
 ]
