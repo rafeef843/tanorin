@@ -1,16 +1,19 @@
+[providers.python]
+version = "3.11"
+
 [phases.setup]
-nixPkgs = ["python311", "python311Packages.pip", "postgresql"]
+nixPkgs = ["postgresql"]
 
 [phases.install]
 cmds = [
-  "cd backend && python3 -m pip install -r requirements.txt"
+  "cd backend && python -m pip install -r requirements.txt"
 ]
 
 [phases.build]
 cmds = [
-  "cd backend && python3 manage.py collectstatic --no-input",
-  "cd backend && python3 manage.py migrate --no-input"
+  "cd backend && python manage.py collectstatic --no-input",
+  "cd backend && python manage.py migrate --no-input"
 ]
 
 [start]
-cmd = "cd backend && python3 -m gunicorn tanorin_backend.wsgi:application"
+cmd = "cd backend && gunicorn tanorin_backend.wsgi:application"
