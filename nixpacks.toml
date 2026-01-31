@@ -12,9 +12,9 @@ cmds = [
 
 [phases.build]
 cmds = [
-  "cd backend && ../venv/bin/python manage.py collectstatic --no-input",
-  "cd backend && ../venv/bin/python manage.py migrate --no-input"
+  "cd backend && /app/venv/bin/python manage.py collectstatic --no-input",
+  "cd backend && /app/venv/bin/python manage.py migrate --no-input"
 ]
 
 [start]
-cmd = "cd backend && ../venv/bin/gunicorn tanorin_backend.wsgi:application"
+cmd = "cd backend && /app/venv/bin/gunicorn tanorin_backend.wsgi:application"
