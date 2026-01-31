@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import tanorinLogo from '../assets/logo.png';
 import tanorinLogoAr from '../assets/logo-ar.png';
 
@@ -9,6 +9,13 @@ export default function Header({ content, lang, toggleLanguage }) {
   const logoSrc = lang === 'en' 
     ? tanorinLogo 
     : tanorinLogoAr;
+
+  const navLinkClass = ({ isActive }) => 
+    `text-sm transition-colors ${isRTL ? 'text-base' : ''} ${
+      isActive 
+        ? 'font-bold text-primary' 
+        : 'font-semibold text-gray-500 hover:text-primary'
+    }`;
 
   return (
     <header className="sticky top-0 z-50 bg-white/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-100 dark:border-white/10 px-6 py-4">
@@ -21,13 +28,13 @@ export default function Header({ content, lang, toggleLanguage }) {
             </Link>
           </div>
           <nav className="hidden md:flex items-center gap-6">
-            <Link to="/" className={`text-sm font-bold text-primary ${isRTL ? 'text-base' : ''}`}>{content.home}</Link>
-            <Link to="/about" className={`text-sm font-semibold text-gray-500 hover:text-primary transition-colors ${isRTL ? 'text-base' : ''}`}>{content.about}</Link>
-            <Link to="/categories" className={`text-sm font-semibold text-gray-500 hover:text-primary transition-colors ${isRTL ? 'text-base' : ''}`}>{content.products}</Link>
+            <NavLink to="/" className={navLinkClass}>{content.home}</NavLink>
+            <NavLink to="/about" className={navLinkClass}>{content.about}</NavLink>
+            <NavLink to="/categories" className={navLinkClass}>{content.products}</NavLink>
 
-            <Link to="/exhibitions" className={`text-sm font-semibold text-gray-500 hover:text-primary transition-colors ${isRTL ? 'text-base' : ''}`}>{content.exhibitions}</Link>
-            <Link to="/news" className={`text-sm font-semibold text-gray-500 hover:text-primary transition-colors ${isRTL ? 'text-base' : ''}`}>{content.news}</Link>
-            <Link to="/careers" className={`text-sm font-semibold text-gray-500 hover:text-primary transition-colors ${isRTL ? 'text-base' : ''}`}>{content.careers}</Link>
+            <NavLink to="/exhibitions" className={navLinkClass}>{content.exhibitions}</NavLink>
+            <NavLink to="/news" className={navLinkClass}>{content.news}</NavLink>
+            <NavLink to="/careers" className={navLinkClass}>{content.careers}</NavLink>
           </nav>
         </div>
         <div className="flex items-center gap-4">
