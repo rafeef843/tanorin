@@ -39,7 +39,7 @@ export default function Header({ content, lang, toggleLanguage }) {
             <div className="w-px h-3 bg-gray-300"></div>
             <span className="text-xs font-bold text-gray-400">{lang === 'en' ? 'AR' : 'EN'}</span>
           </div>
-          <button className="md:hidden p-2 bg-gray-100 dark:bg-white/10 rounded-lg">
+          <button disabled className="md:hidden p-2 bg-gray-100 dark:bg-white/10 rounded-lg cursor-not-allowed opacity-50">
             <span className="material-symbols-outlined">menu</span>
           </button>
         </div>

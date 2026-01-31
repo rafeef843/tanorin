@@ -22,13 +22,13 @@ export default function Hero({ content, lang }) {
             {content.description}
           </p>
           <div className="flex flex-wrap gap-4">
-            <button className="bg-primary hover:bg-[#c0181f] text-white px-8 py-4 rounded-xl font-bold flex items-center gap-3 transition-transform hover:scale-105 active:scale-95 shadow-xl shadow-primary/20">
+            <button disabled className="bg-gray-400 text-white px-8 py-4 rounded-xl font-bold flex items-center gap-3 cursor-not-allowed opacity-70">
               <span className={`material-symbols-outlined fill-1 ${isRTL ? 'rtl-flip' : ''}`}>play_circle</span>
               {content.videoButton}
             </button>
-            <button className="bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-bold transition-all">
+            <Link to="/categories" className="bg-white/10 backdrop-blur-md border border-white/20 hover:bg-white/20 text-white px-8 py-4 rounded-xl font-bold transition-all inline-block">
               {content.exploreButton}
-            </button>
+            </Link>
           </div>
         </div>
       </div>

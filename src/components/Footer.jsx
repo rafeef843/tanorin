@@ -25,10 +25,10 @@ export default function Footer({ content, lang }) {
                 {content.desc}
               </p>
               <div className="flex gap-4">
-                <a className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-all" href="#">
+                <a className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center cursor-not-allowed opacity-50" onClick={(e) => e.preventDefault()} href="#">
                   <span className="material-symbols-outlined text-lg">share</span>
                 </a>
-                <a className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-all" href="#">
+                <a className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center cursor-not-allowed opacity-50" onClick={(e) => e.preventDefault()} href="#">
                   <span className="material-symbols-outlined text-lg">rss_feed</span>
                 </a>
               </div>
@@ -43,7 +43,7 @@ export default function Footer({ content, lang }) {
                   return (
                     <li key={index}>
                       {isInteractionValues ? (
-                        <a className="hover:text-primary transition-colors" href="#">{item}</a>
+                        <a className="cursor-not-allowed opacity-50" onClick={(e) => e.preventDefault()} href="#">{item}</a>
                       ) : (
                         <Link className="hover:text-primary transition-colors" to={path}>{item}</Link>
                       )}
@@ -74,7 +74,7 @@ export default function Footer({ content, lang }) {
               <p className="text-gray-400 text-sm mb-4">{content.newsletter.desc}</p>
               <div className="relative">
                 <input className="w-full bg-white/5 border-white/10 rounded-xl py-3 px-4 text-sm focus:ring-primary focus:border-primary" placeholder={content.newsletter.placeholder} type="email" />
-                <button className={`absolute ${isRTL ? 'left-2' : 'right-2'} top-2 bg-primary p-1.5 rounded-lg`}>
+                <button disabled className={`absolute ${isRTL ? 'left-2' : 'right-2'} top-2 bg-gray-500 p-1.5 rounded-lg cursor-not-allowed opacity-50`}>
                   <span className={`material-symbols-outlined text-sm ${isRTL ? 'rtl-flip' : ''}`}>send</span>
                 </button>
               </div>
@@ -83,8 +83,8 @@ export default function Footer({ content, lang }) {
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 text-gray-500 text-xs">
             <p>{content.copyright}</p>
             <div className="flex gap-8">
-              <a className="hover:text-white transition-colors" href="#">{content.privacy}</a>
-              <a className="hover:text-white transition-colors" href="#">{content.terms}</a>
+              <a className="cursor-not-allowed opacity-50" onClick={(e) => e.preventDefault()} href="#">{content.privacy}</a>
+              <a className="cursor-not-allowed opacity-50" onClick={(e) => e.preventDefault()} href="#">{content.terms}</a>
             </div>
           </div>
         </div>
